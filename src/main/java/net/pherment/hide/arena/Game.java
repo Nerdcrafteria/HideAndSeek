@@ -94,7 +94,7 @@ public class Game {
                         @Override
                         public void run() {
                             for (Player p: playerInTeam) {
-                                p.sendTitle("До выхода охотника", finalCtr+" секунд!", 0, 20, 0);
+                                p.sendTitle("You have", finalCtr+" seconds until we begin! Hide!", 0, 20, 0);
                             }
                         }
                     }.runTask(HideAndSeek.getPlugin(HideAndSeek.class));
@@ -106,7 +106,7 @@ public class Game {
                     }
                 }
                 for (Player p: teamHiders) {
-                    p.sendTitle(ChatColor.RED + "ОХОТНИКИ ВЫШЛИ", "", 0, 20, 0);
+                    p.sendTitle(ChatColor.RED + "Seekers begin!", "", 0, 20, 0);
                 }
                 new BukkitRunnable() {
                     @Override
@@ -156,7 +156,7 @@ public class Game {
     private void endGame(HASArena arena, Player p) {
         isGameAlive = false;
         if (teamHiders.size() == 0) {
-            p.sendTitle(ChatColor.RED + "Победили охотники!", "", 0, 60, 0);
+            p.sendTitle(ChatColor.RED + "All hiders have been found!", "", 0, 60, 0);
             p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 1, 1);
             p.setHealth(20);
             p.setFoodLevel(20);
@@ -166,7 +166,12 @@ public class Game {
             teamHiders.remove(p);
             playerInTeam.remove(p);
         } else {
-            p.sendTitle(ChatColor.DARK_AQUA + "Победили прячущиеся!", "", 0, 60, 0);
+            for (Player p: playerInTeam) {
+                p.sendTitle(ChatColor.DARK_AQUA + "Not all hiders were found!", "", 0, 60, 0);
+            }
+        }
+
+        for (Player p: playerInTeam) {
             p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 1, 1);
             p.setHealth(20);
             p.setFoodLevel(20);
