@@ -92,7 +92,7 @@ public class Game {
                         @Override
                         public void run() {
                             for (Player p: playerInTeam) {
-                                p.sendTitle("До выхода охотника", finalCtr+" секунд!", 0, 20, 0);
+                                p.sendTitle("There are", finalCtr+" seconds before we start! Hide!", 0, 20, 0);
                             }
                         }
                     }.runTask(HideAndSeek.getPlugin(HideAndSeek.class));
@@ -104,7 +104,7 @@ public class Game {
                     }
                 }
                 for (Player p: teamHiders) {
-                    p.sendTitle(ChatColor.RED + "ОХОТНИКИ ВЫШЛИ", "", 0, 20, 0);
+                    p.sendTitle(ChatColor.RED + "Seekers have started!", "", 0, 20, 0);
                 }
                 new BukkitRunnable() {
                     @Override
@@ -154,11 +154,11 @@ public class Game {
     private void endGame(HASArena arena) {
         if (teamHiders.size() == 0) {
             for (Player p: playerInTeam) {
-                p.sendTitle(ChatColor.RED + "Победили охотники!", "", 0, 60, 0);
+                p.sendTitle(ChatColor.RED + "All hiders have been found!", "", 0, 60, 0);
             }
         } else {
             for (Player p: playerInTeam) {
-                p.sendTitle(ChatColor.DARK_AQUA + "Победили прячущиеся!", "", 0, 60, 0);
+                p.sendTitle(ChatColor.DARK_AQUA + "All hiders were not found!", "", 0, 60, 0);
             }
         }
 
